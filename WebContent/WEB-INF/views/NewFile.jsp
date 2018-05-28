@@ -66,12 +66,12 @@
                                      //初始化option.xAxis[0]中的data
                                       option.xAxis[0].data=[];
                                       for(var i=0;i<result.length;i++){
-                                        option.xAxis[0].data.push(result[i].name);
+                                        option.xAxis[0].data.push(result[i].eid);
                                       }
                                       //初始化option.series[0]中的data
                                       option.series[0].data=[];
                                       for(var i=0;i<result.length;i++){
-                                        option.series[0].data.push(result[i].num);
+                                        option.series[0].data.push(result[i].count);
                                       }
                                }
                             }
