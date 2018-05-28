@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+
+	<context:property-placeholder location="classpath:resources/jdbc.properties" />
+
+	<!-- 2.数据库连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 配置连接池属性 -->
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.usernamex}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- c3p0连接池的私有属性 -->
+		<property name="maxPoolSize" value="30" />
+		<property name="minPoolSize" value="10" />
+		<!-- 关闭连接后不自动commit -->
+		<property name="autoCommitOnClose" value="false" />
+		<!-- 获取连接超时时间 -->
+		<property name="checkoutTimeout" value="10000" />
+		<!-- 当获取连接失败重试次数 -->
+		<property name="acquireRetryAttempts" value="2" />
+	</bean>
+
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+       <!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+		<property name="configLocation" value="classpath:resources/mybatis-config.xml" />
+		<!-- 扫描entity包 使用别名 -->
+		<property name="typeAliasesPackage" value="com.latoris.consume.beans" />
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath:resources/mapper/*.xml"></property>  
+    </bean>  
+
+	<!-- 3). mybatis 自动扫描加载Sql 映射文件/接口 : MapperScannerConfigurer -->
+	<!-- basePackage 指定sql映射文件/接口所在的包(自动扫描) -->
+	<!-- 这种方式就是需要将接口以及映射文件都放到同一个目录下,而如果想分离开,也可以采用SqlSessionFactory中的注释的那种方式, 
+		也就是加载一个配置文件,通过配置文件的方式管理映射文件以及接口 -->
+	  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
+	  <!-- 注入sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!-- 给出需要扫描Dao接口包 -->
+		<property name="basePackage" value="com.latoris.consume.mapper" />
+	  </bean>
+
+
+	<!-- 4).定义Mapper接口 -->
+	<!--<bean id="UserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.latoris.consume.mapper.UserMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> -->
+	
+
+</beans>
