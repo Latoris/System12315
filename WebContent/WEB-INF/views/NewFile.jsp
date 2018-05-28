@@ -6,16 +6,16 @@
 <head>
     <meta charset="utf-8">
     <title>ECharts</title>
+    <!-- JQUERY -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/echarts.min.js">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/require.js">
     </script>
 </head>
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 600px;height:400px;"></div>
     <script type="text/javascript">
-        
-        
-                
                 console.log("1");
                 // 基于准备好的dom，初始化echarts图表
                 myChart = echarts.init(document.getElementById('main')); 
@@ -33,7 +33,6 @@
                     xAxis : [
                         {
                             type : 'category',
-                            data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
                             
                         }
                     ],
@@ -42,17 +41,44 @@
                         {
                             "name":"销量",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
                             
                         }
                     ]
                 };
-                //加载数据
-                //loadDATA(option);
+                var name="a"
+                var count="0"
+                var startTime="2018-04-01";
+            	var endTime="2018-04-02";
+            	//console.log(time)
+                $.ajax({
+                   type : "post",
+                   async : false, //同步执行
+                   url : "count_enterprise",
+                   data :  JSON.stringify({  
+                       name: name,  
+                       startTime: startTime,  
+                       endTime: endTime,  
+                       count : count}),  
+                   contentType: "application/json; charset=utf-8",
+                   dataType : "json", //返回数据形式为json
+                   success : function(result) {
+                              if (result) {
+                                     //初始化option.xAxis[0]中的data
+                                      option.xAxis[0].data=[];
+                                      for(var i=0;i<result.length;i++){
+                                        option.xAxis[0].data.push(result[i].name);
+                                      }
+                                      //初始化option.series[0]中的data
+                                      option.series[0].data=[];
+                                      for(var i=0;i<result.length;i++){
+                                        option.series[0].data.push(result[i].num);
+                                      }
+                               }
+                            }
+                });     
                 // 为echarts对象加载数据 
                 myChart.setOption(option); 
-            
-    
+           
        
     </script>
 </body>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.latoris.consume.mapper.CountMapper" >    
+    <resultMap id="CountEnterpriseResultMap" type="com.latoris.consume.beans.VOBean"> 
+    	<result column="name" property="name" jdbcType="VARCHAR" />    
+        <result column="count" property="count" jdbcType="INTEGER" />  
+    </resultMap>  
+  
+    <!-- 操作 -->
+	<select id="CountByEnterprise"  resultType="com.latoris.consume.beans.VOBean">
+		select enterprise.name, a.count from (select eid, sum(count) count from enterprise_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} 
+	    GROUP BY eid
+        order by count desc)a join enterprise on a.eid=enterprise.eid
+	</select>
+    
+</mapper>  
