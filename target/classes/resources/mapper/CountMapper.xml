@@ -13,5 +13,34 @@
 	    GROUP BY eid
         order by count desc)a join enterprise on a.eid=enterprise.eid
 	</select>
+	
+	<select id="CountByPurchaseWay"  resultType="com.latoris.consume.beans.VOBean">
+		select purchase_way as name, sum(count) count from enterprise_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} 
+	    GROUP BY purchase_way
+	</select>
+	
+	<select id="CountByAmount"  resultType="com.latoris.consume.beans.VOBean">
+		select amount as name, sum(count) count from enterprise_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} 
+	    GROUP BY amount
+	</select>
+	
+	<select id="CountByMerchandiseTypeFirst"  resultType="com.latoris.consume.beans.VOBean">
+		select product_type.CPFLMC, a.count from (select merchandise_type, sum(count) count 
+		from merchandiseType_first_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} 
+	    GROUP BY eid
+        order by count desc)a join enterprise on a.eid=enterprise.eid
+	</select>
+	
+	<!-- 二级类目 比如油粮、等 -->
+	<select id="CountByMerchandiseTypeSecond"  resultType="com.latoris.consume.beans.VOBean">
+		select product_type.CPFLMC, a.count from (select merchandise_type, sum(count) count 
+		from merchandiseType_first_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} 
+	    GROUP BY eid
+        order by count desc)a join enterprise on a.eid=enterprise.eid
+	</select>
     
 </mapper>  
