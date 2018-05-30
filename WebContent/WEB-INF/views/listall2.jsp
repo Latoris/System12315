@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="add">新增</a>
+<a href="addComplaint">新增</a>
 <a>所有投诉</a>
 <table>
 	<tr>

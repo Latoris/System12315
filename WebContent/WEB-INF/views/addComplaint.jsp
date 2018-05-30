@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>layout 后台大布局 - Layui</title>
-  <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -70,7 +72,7 @@
   <div class="layui-body">
     <!-- 内容主体区域 -->
     <div style="padding: 15px;">添加投诉</div>
-	<form class="layui-from" onsubmit="add()" method="post">
+	<form class="layui-from" method="post" modelAttribute="ComplaintBean">
 		<div class="layui-form-item">
 			<label class="layui-form-label">产品名称 </label>
 			<div class="layui-input-inline">
@@ -161,17 +163,8 @@
   </div>
 
 </div>
-<script src="../../resources/layui/layui.js"></script>
-<script>
-function add(){
-	var productName = $("productName").val
-	var productName = $("productName").val
-	var productName = $("productName").val
-	var productName = $("productName").val
-	var productName = $("productName").val
-	if($('#
-}
-</script>
+<script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
+
 <script>
 layui.use('form', function(){
   var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功

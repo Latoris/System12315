@@ -4,6 +4,32 @@ import java.sql.Timestamp;
 
 public class ComplaintBean {
 
+	public ComplaintBean(long cid, long uid, String eid, String merchandise_name, Timestamp submit_time,
+			Timestamp happen_time, int purchase_way, int problem_type, String complaint_content, String appeal_type,
+			String count, int amount, int status, long iid) {
+		super();
+		this.cid = cid;
+		this.uid = uid;
+		this.eid = eid;
+		this.merchandise_name = merchandise_name;
+		this.submit_time = submit_time;
+		this.happen_time = happen_time;
+		this.purchase_way = purchase_way;
+		this.problem_type = problem_type;
+		this.complaint_content = complaint_content;
+		this.appeal_type = appeal_type;
+		this.count = count;
+		this.amount = amount;
+		this.status = status;
+		this.iid = iid;
+	}
+	@Override
+	public String toString() {
+		return "ComplaintBean [cid=" + cid + ", uid=" + uid + ", eid=" + eid + ", merchandise_name=" + merchandise_name
+				+ ", submit_time=" + submit_time + ", happen_time=" + happen_time + ", purchase_way=" + purchase_way
+				+ ", problem_type=" + problem_type + ", complaint_content=" + complaint_content + ", appeal_type="
+				+ appeal_type + ", count=" + count + ", amount=" + amount + ", status=" + status + ", iid=" + iid + "]";
+	}
 	private long cid;
 	private long uid;
 	private String eid;
