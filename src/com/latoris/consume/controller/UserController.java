@@ -20,7 +20,7 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String user(HttpServletRequest request) {
-		return "listall2";
+		return "NewFile";
 	}
 	
 	@RequestMapping("/loginconfrim")

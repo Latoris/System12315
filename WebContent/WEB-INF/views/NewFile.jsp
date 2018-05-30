@@ -14,7 +14,7 @@
 </head>
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="main" style="height:400px;"></div>
     <script type="text/javascript">
                 console.log("1");
                 // 基于准备好的dom，初始化echarts图表
@@ -22,7 +22,7 @@
                 console.log("2");
                 var option = {
                 		 title:{
-                             text:'ECharts 数据统计'
+                             text:'投诉数量文件分析'
                          },
                     tooltip: {
                         //show: true
@@ -33,13 +33,17 @@
                     xAxis : [
                         {
                             type : 'category',
+                            nameTextStyle: {
+                            	width: "70%"
+                          
+                            }
                             
                         }
                     ],
                     yAxis :{},
                     series : [
                         {
-                            "name":"销量",
+                            "name":"投诉量",
                             "type":"bar",
                             
                         }
