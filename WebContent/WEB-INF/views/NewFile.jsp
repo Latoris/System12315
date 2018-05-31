@@ -10,11 +10,45 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/echarts.min.js">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/require.js">
+    <script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css">
     </script>
 </head>
 <body>
+		<div class="layui-inline">
+			<label class="layui-form-label">开始日期 </label>
+			<div class="layui-input-inline">
+				<input type="text" class="layui-input" id="test1"/>
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">结束日期 </label>
+			<div class="layui-input-inline">
+				<input type="text" class="layui-input" id="test2"/>
+			</div>
+		</div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="height:400px;"></div>
+ <script>
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#test1' //指定元素
+  });
+});
+</script>
+ <script>
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#test2' //指定元素
+  });
+});
+</script>
     <script type="text/javascript">
                 console.log("1");
                 // 基于准备好的dom，初始化echarts图表
@@ -51,8 +85,8 @@
                 };
                 var name="a"
                 var count="0"
-                var startTime="2018-04-01";
-            	var endTime="2018-04-02";
+                var startTime=$("#test1").val();
+            	var endTime=$("#test2").val();;
             	//console.log(time)
                 $.ajax({
                    type : "post",
