@@ -10,8 +10,8 @@
 	<select id="CountByEnterprise"  resultType="com.latoris.consume.beans.VOBean">
 		select enterprise.name, a.count from (select eid, sum(count) count from enterprise_daily_result 
 		where submit_time between #{para.startTime} and #{para.endTime} 
-	    GROUP BY eid
-        order by count desc)a left join enterprise on a.eid=enterprise.eid
+	    GROUP BY eid)a 
+	    left join enterprise on a.eid=enterprise.eid order by a.count desc
 	</select>
 	<!--
 	<select id="CountByPurchaseWay"  resultType="com.latoris.consume.beans.VOBean">

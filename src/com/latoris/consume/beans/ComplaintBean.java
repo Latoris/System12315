@@ -1,17 +1,36 @@
 package com.latoris.consume.beans;
 
-import java.sql.Timestamp;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ComplaintBean {
-
-	public ComplaintBean(long cid, long uid, String eid, String merchandise_name, Timestamp submit_time,
-			Timestamp happen_time, int purchase_way, int problem_type, String complaint_content, String appeal_type,
-			String count, int amount, int status, long iid) {
-		super();
+	private long cid;
+	private long uid;
+	private String eid;
+	private String merchandise_name;
+	private String merchandise_type;
+	private String submit_time;
+	private String happen_time;
+	private int purchase_way;
+	private int problem_type;
+	private String complaint_content;
+	private String appeal_type;
+	private String count;
+	private int amount;
+	private int status;
+	private long iid;
+	
+	public ComplaintBean() {
+		
+	}
+	public ComplaintBean(long cid, long uid, String eid, String merchandise_name, String merchandise_type,
+			String submit_time, String happen_time, int purchase_way, int problem_type, String complaint_content,
+			String appeal_type, String count, int amount, int status, long iid) {
 		this.cid = cid;
 		this.uid = uid;
 		this.eid = eid;
 		this.merchandise_name = merchandise_name;
+		this.merchandise_type = merchandise_type;
 		this.submit_time = submit_time;
 		this.happen_time = happen_time;
 		this.purchase_way = purchase_way;
@@ -26,24 +45,17 @@ public class ComplaintBean {
 	@Override
 	public String toString() {
 		return "ComplaintBean [cid=" + cid + ", uid=" + uid + ", eid=" + eid + ", merchandise_name=" + merchandise_name
-				+ ", submit_time=" + submit_time + ", happen_time=" + happen_time + ", purchase_way=" + purchase_way
-				+ ", problem_type=" + problem_type + ", complaint_content=" + complaint_content + ", appeal_type="
-				+ appeal_type + ", count=" + count + ", amount=" + amount + ", status=" + status + ", iid=" + iid + "]";
+				+ ", merchandise_type=" + merchandise_type + ", submit_time=" + submit_time + ", happen_time="
+				+ happen_time + ", purchase_way=" + purchase_way + ", problem_type=" + problem_type
+				+ ", complaint_content=" + complaint_content + ", appeal_type=" + appeal_type + ", count=" + count
+				+ ", amount=" + amount + ", status=" + status + ", iid=" + iid + "]";
 	}
-	private long cid;
-	private long uid;
-	private String eid;
-	private String merchandise_name;
-	private Timestamp submit_time;
-	private Timestamp happen_time;
-	private int purchase_way;
-	private int problem_type;
-	private String complaint_content;
-	private String appeal_type;
-	private String count;
-	private int amount;
-	private int status;
-	private long iid;
+	public String getMerchandise_type() {
+		return merchandise_type;
+	}
+	public void setMerchandise_type(String merchandise_type) {
+		this.merchandise_type = merchandise_type;
+	}
 	public long getCid() {
 		return cid;
 	}
@@ -68,16 +80,16 @@ public class ComplaintBean {
 	public void setMerchandise_name(String merchandise_name) {
 		this.merchandise_name = merchandise_name;
 	}
-	public Timestamp getSubmit_time() {
+	public String getSubmit_time() {
 		return submit_time;
 	}
-	public void setSubmit_time(Timestamp submit_time) {
+	public void setSubmit_time(String submit_time) {
 		this.submit_time = submit_time;
 	}
-	public Timestamp getHappen_time() {
+	public String getHappen_time() {
 		return happen_time;
 	}
-	public void setHappen_time(Timestamp happen_time) {
+	public void setHappen_time(String happen_time) {
 		this.happen_time = happen_time;
 	}
 	public int getPurchase_way() {

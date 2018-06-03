@@ -8,4 +8,6 @@ import com.latoris.consume.beans.VOBean;
 
 public interface CountMapper {
 	public List<VOBean> CountByEnterprise(@Param(value="para") VOBean para);
+
+	public List<VOBean> CountByAge(@Param(value="para")VOBean para);
 }

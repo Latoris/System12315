@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class UserBean {
 	
-	private int uid;
+	private long uid;
 	private int card_type;
 	private String card_num;
 	private String sex;
@@ -14,10 +14,17 @@ public class UserBean {
 	private String password;
 	private String phone;
 	private String addr;
-	public int getUid() {
+	
+	@Override
+	public String toString() {
+		return "UserBean [uid=" + uid + ", card_type=" + card_type + ", card_num=" + card_num + ", sex=" + sex
+				+ ", birthday=" + birthday + ", name=" + name + ", username=" + username + ", password=" + password
+				+ ", phone=" + phone + ", addr=" + addr + "]";
+	}
+	public long getUid() {
 		return uid;
 	}
-	public void setUid(int uid) {
+	public void setUid(long uid) {
 		this.uid = uid;
 	}
 	public int getCard_type() {
