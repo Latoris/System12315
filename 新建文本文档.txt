@@ -29,6 +29,6 @@ from default.complaint GROUP BY submit_time, type
 
 select b.CPFLMC as name,a.type,a.submit_time, a.count from
 (select substring(merchandise_type,1,3) type, submit_time, count(1) as count
-from complaint where submit_time between '2018-04-28' and '2018-05-01' GROUP BY submit_time, type) a 
-(select distinct substring(FLCODE,1,3) as typeb, CPFLMC from product_type)b
+from default.complaint GROUP BY submit_time, type) a 
+,(select  substring(FLCODE,1,3) typeb, CPFLMC from default.product_type GROUP BY typeb)b
 where a.type=b.typeb

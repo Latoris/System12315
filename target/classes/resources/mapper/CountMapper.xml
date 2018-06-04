@@ -43,4 +43,9 @@
         order by count desc)a join enterprise on a.eid=enterprise.eid
 	</select>
     -->
+    
+    <select id="CountBySubmitTime"  resultType="com.latoris.consume.beans.VOBean">
+		select substring(submit_time,1,10) name, count from all_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} order by submit_time ASC
+	</select>
 </mapper>  
