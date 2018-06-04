@@ -5,9 +5,10 @@
         <id column="cid" property="cid"/>  
         <result column="uid" property="uid" jdbcType="BIGINT" />  
         <result column="eid" property="eid" jdbcType="VARCHAR" />  
-        <result column="merchandise_name" property="merchandise_name" jdbcType="VARCHAR" />  
-        <result column="submit_time" property="submit_time" jdbcType="TIMESTAMP" />  
-        <result column="happen_time" property="happen_time" jdbcType="TIMESTAMP" />  
+        <result column="merchandise_name" property="merchandise_name" jdbcType="VARCHAR" /> 
+        <result column="merchandise_type" property="merchandise_type" jdbcType="VARCHAR" /> 
+        <result column="submit_time" property="submit_time" jdbcType="VARCHAR" />  
+        <result column="happen_time" property="happen_time" jdbcType="VARCHAR" />  
         <result column="purchase_way" property="purchase_way" jdbcType="INTEGER" />  
         <result column="problem_type" property="problem_type" jdbcType="INTEGER" />  
         <result column="complaint_content" property="complaint_content" jdbcType="VARCHAR" />  
@@ -20,30 +21,31 @@
   
     <!-- 操作 -->
 		<insert id="addComplaint" parameterType="com.latoris.consume.beans.ComplaintBean">
-			insert into complaint (uid,eid,merchandise_name,submit_time,happen_time,
+			insert into complaint (uid,eid,merchandise_name,merchandise_type,submit_time,happen_time,
 			purchase_way,problem_type,complaint_content,appeal_type,count,amount,status,iid)
-			values (#{uid},#{eid},#{merchandise_name},#{submit_time},#{happen_time},
+			values (#{uid},#{eid},#{merchandise_name},#{merchandise_type},#{submit_time},#{happen_time},
 			#{purchase_way},#{problem_type},#{complaint_content},#{appeal_type},
 			#{count},#{amount},#{status},#{iid})
 		</insert>
 		<delete id="delComplaint">
 			delete from complaint where cid = #{cid, jdbcType=BIGINT}
 		</delete>
-		<update id="updateComplaintById">
+		<update id="updateComplaintStatusByCid">
 			update complaint
-			set uid=#{complaint。uid},eid=#{complaint.eid},merchandise_name=#{complaint.merchandise_name},
-			submit_time=#{complaint.submit_time},happen_time=#{complaint.happen_time},
-			purchase_way=#{complaint.purchase_way},problem_type=#{complaint.problem_type},
+			set status=#{complaint.status}
+			where cid = #{cid, jdbcType=BIGINT}
+		</update>
+		<update id="updateComplaintByCid">
+			update complaint
+			set purchase_way=#{complaint.purchase_way},problem_type=#{complaint.problem_type},
 			complaint_content=#{complaint.complaint_content},appeal_type=#{complaint.appeal_type},
-			count=#{complaint.count},amount=#{complaint.amount},
-			status=#{complaint.status},iid=#{complaint.iid}
+			count=#{complaint.count},amount=#{complaint.amount},iid=#{complaint.iid}
 			where cid = #{cid, jdbcType=BIGINT}
 		</update>
 		<select id="findComplaint" resultMap="ComplaintResultMap">
-			select * from complaint limit 100
+			select * from complaint limit 10
 		</select>
-		<select id="findComplaintByUid" parameterType="INTEGER" resultType="com.latoris.consume.beans.ComplaintBean">
-			select * from complaint where cid = #{cid}
+		<select id="findComplaintByUid" parameterType="java.lang.Long" resultMap="ComplaintResultMap">
+			select * from complaint where uid = #{uid}
 		</select>
-    
 </mapper>  

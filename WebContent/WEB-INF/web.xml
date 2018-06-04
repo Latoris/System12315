@@ -6,6 +6,15 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
+	<context-param>  
+        <param-name>log4jContextName</param-name>  
+        <param-value>star</param-value>  
+    </context-param>  
+    <context-param>  
+        <param-name>log4jConfiguration</param-name>  
+        <param-value>classpath:resources/log4j2.xml</param-value>  
+    </context-param>  
+	
 
 	<!-- 6-1)配置 SpringMvc的DispatcherServlet(前端控制器) -->
 	<servlet>
@@ -17,7 +26,6 @@
 		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
-
 	<!-- 6-2)所有的请求都会被映射 -->
 	<servlet-mapping>
 		<servlet-name>springDispatcherServlet</servlet-name>

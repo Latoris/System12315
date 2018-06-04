@@ -23,9 +23,8 @@ public class ComplaintServiceImpl implements ComplaintService{
 		
 	}
 	@Override
-	public ComplaintBean findComplaintById(Integer id){
-		ComplaintBean user = (ComplaintBean) mapper.findComplaintById(id);
-		return user;
+	public List<ComplaintBean> findComplaintByUid(Long uid){
+		return mapper.findComplaintByUid(uid);
 	}
 	@Override
 	public void addComplaint(ComplaintBean Complaint) {
@@ -42,5 +41,10 @@ public class ComplaintServiceImpl implements ComplaintService{
 	public void delComplaintById(long id) {
 		// TODO Auto-generated method stub
 		mapper.delComplaint(id);
+	}
+	@Override
+	public ComplaintBean findComplaintByCid(long cid) {
+		// TODO Auto-generated method stub
+		return mapper.findComplaintByCid(cid);
 	}
 }

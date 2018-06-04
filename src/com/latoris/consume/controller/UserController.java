@@ -2,6 +2,7 @@ package com.latoris.consume.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,38 +21,34 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String user(HttpServletRequest request) {
-		return "NewFile";
+		return "login";
 	}
 	
 	@RequestMapping("/loginconfrim")
-	public String userLogin(UserBean user) {
+	public String userLogin(UserBean user, HttpServletRequest request) {
 		UserBean result = userService.findUserByUsernameAndPass(user);
-		if(result != null) {
-			return "listall2";
+		System.out.println("结果"+user.toString());
+		if(result.getName() != null) {
+			HttpSession session = request.getSession();
+            session.setAttribute("user", result);
+            return "redirect:/showComplaint";
 		}
-		//request.setAttribute(, arg1);
-		return "listall";
+		return "login";
 	}
+	
 	
 	@RequestMapping("/user")
 	public String listall(HttpServletRequest request) {
-			//logger.addInfo("list all");
 			List<UserBean> list = userService.findUser();
-			System.out.println(list);
 			request.setAttribute("Lists", list);
 			return "listall";
-	}
-
-	@RequestMapping(value = "/add")
-	public String add() {
-		return "input";
 	}
 
 	//添加新动画
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public String save(UserBean user) {
 		userService.addUser(user);
-		return "redirect:/user";
+		return "login";
 	}
 	
 	/*
@@ -74,10 +71,12 @@ public class UserController {
 		return "redirect:/user";
 	}
 
-	@RequestMapping(value = "/deluser")
-	public String delete(@RequestParam("id") int id) {
-		//logger.info("删除" + id);
-		userService.delUserById(id);
-		return "redirect:/user";
+	@RequestMapping(value = "/exit")
+	public String userQuit(HttpServletRequest request) {
+		System.out.println("用户退出");
+		HttpSession session=request.getSession();
+		session.removeAttribute("user");
+		System.out.println(session.getAttribute("user"));
+		return "login";
 	}
 }

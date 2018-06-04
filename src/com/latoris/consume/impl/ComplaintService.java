@@ -7,11 +7,13 @@ public interface ComplaintService{
 
 	public List<ComplaintBean> findComplaint();
 	
-	public ComplaintBean findComplaintById(Integer id);
+	public List<ComplaintBean> findComplaintByUid(Long uid);
 	
 	public void addComplaint(ComplaintBean Complaint);
 
 	public void updateComplaint(ComplaintBean Complaint, long id) ;
 
 	public void delComplaintById(long id);
+
+	public ComplaintBean findComplaintByCid(long cid);
 }

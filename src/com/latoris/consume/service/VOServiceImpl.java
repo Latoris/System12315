@@ -26,5 +26,11 @@ public class VOServiceImpl implements VOService{
 		return mapper.CountByEnterprise(para);
 	}
 	
+	@Override
+	public List<VOBean> CountByAge(VOBean para) {
+		// TODO Auto-generated method stub
+		return mapper.CountByAge(para);
+	}
+	
 	
 }

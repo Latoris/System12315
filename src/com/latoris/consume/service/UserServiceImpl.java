@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	@Override
-	public void updateUser(UserBean User, int id) {
-		mapper.updateUserById(User, id);
+	public void updateUser(UserBean User, long l) {
+		mapper.updateUserById(User, l);
 	}
 	@Override
 	public void delUserById(int id) {

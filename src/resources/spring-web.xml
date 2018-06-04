@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 	<!-- 1)相关配置自动扫描的包 -->
-	<context:component-scan base-package="com.latoris.consume.controller"></context:component-scan>
+	<context:component-scan base-package="com.latoris.consume"></context:component-scan>
 	<!-- 2)配置视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,4 +25,35 @@
 
 	<!-- 4)如果 既想直接访问js等静态页面，又想访问RequestMapping，那就得配置以下这个选项 -->
 	<mvc:annotation-driven></mvc:annotation-driven> 
+	
+	<bean
+	class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	<property name="webBindingInitializer">
+		<bean class="com.latoris.consume.util.MyDataBinding" />
+	</property>
+	<property name="messageConverters">
+		<list>
+			<bean
+				class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="writeAcceptCharset" value="false" />
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>*/*;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean
+				class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+			<bean
+				class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter" />
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+		</list>
+	</property>
+	</bean>
+	
+    
 </beans>
