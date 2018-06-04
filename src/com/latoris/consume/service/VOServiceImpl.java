@@ -32,5 +32,19 @@ public class VOServiceImpl implements VOService{
 		return mapper.CountByAge(para);
 	}
 	
-	
+	@Override
+	public List<VOBean> CountBySex(VOBean para) {
+		// TODO Auto-generated method stub
+		return mapper.CountBySex(para);
+	}
+	@Override
+	public List<VOBean> CountBySubmitTime(VOBean para) {
+		// TODO Auto-generated method stub
+		return mapper.CountBySubmitTime(para);
+	}
+	@Override
+	public List<VOBean> CountByTypeFirst(VOBean para) {
+		// TODO Auto-generated method stub
+		return mapper.CountByTypeFirst(para);
+	}
 }

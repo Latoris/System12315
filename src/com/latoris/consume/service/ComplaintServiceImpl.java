@@ -35,7 +35,7 @@ public class ComplaintServiceImpl implements ComplaintService{
 	}
 	@Override
 	public void updateComplaint(ComplaintBean Complaint, long l) {
-		mapper.updateComplaintById(Complaint, l);
+		mapper.updateComplaintByCid(Complaint, l);
 	}
 	@Override
 	public void delComplaintById(long id) {

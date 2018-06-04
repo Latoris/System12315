@@ -39,7 +39,7 @@
 			update complaint
 			set purchase_way=#{complaint.purchase_way},problem_type=#{complaint.problem_type},
 			complaint_content=#{complaint.complaint_content},appeal_type=#{complaint.appeal_type},
-			count=#{complaint.count},amount=#{complaint.amount},iid=#{complaint.iid}
+			count=#{complaint.count},amount=#{complaint.amount},iid=#{complaint.iid},status=#{complaint.status}
 			where cid = #{cid, jdbcType=BIGINT}
 		</update>
 		<select id="findComplaint" resultMap="ComplaintResultMap">
@@ -47,5 +47,8 @@
 		</select>
 		<select id="findComplaintByUid" parameterType="java.lang.Long" resultMap="ComplaintResultMap">
 			select * from complaint where uid = #{uid}
+		</select>
+		<select id="findComplaintByCid" parameterType="java.lang.Long">
+			select * from complaint where cid = #{cid}
 		</select>
 </mapper>  

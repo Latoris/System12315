@@ -13,39 +13,25 @@
 	    GROUP BY eid)a 
 	    left join enterprise on a.eid=enterprise.eid order by a.count desc
 	</select>
-	<!--
-	<select id="CountByPurchaseWay"  resultType="com.latoris.consume.beans.VOBean">
-		select purchase_way as name, sum(count) count from enterprise_daily_result 
-		where submit_time between #{para.startTime} and #{para.endTime} 
-	    GROUP BY purchase_way
-	</select>
-	
-	<select id="CountByAmount"  resultType="com.latoris.consume.beans.VOBean">
-		select amount as name, sum(count) count from enterprise_daily_result 
-		where submit_time between #{para.startTime} and #{para.endTime} 
-	    GROUP BY amount
-	</select>
-	
-	<select id="CountByMerchandiseTypeFirst"  resultType="com.latoris.consume.beans.VOBean">
-		select product_type.CPFLMC, a.count from (select merchandise_type, sum(count) count 
-		from merchandiseType_first_daily_result 
-		where submit_time between #{para.startTime} and #{para.endTime} 
-	    GROUP BY eid
-        order by count desc)a join enterprise on a.eid=enterprise.eid
-	</select>-->
-	
-	<!-- 二级类目 比如油粮、等 
-	<select id="CountByMerchandiseTypeSecond"  resultType="com.latoris.consume.beans.VOBean">
-		select product_type.CPFLMC, a.count from (select merchandise_type, sum(count) count 
-		from merchandiseType_first_daily_result 
-		where submit_time between #{para.startTime} and #{para.endTime} 
-	    GROUP BY eid
-        order by count desc)a join enterprise on a.eid=enterprise.eid
-	</select>
-    -->
     
     <select id="CountBySubmitTime"  resultType="com.latoris.consume.beans.VOBean">
 		select substring(submit_time,1,10) name, count from all_daily_result 
 		where submit_time between #{para.startTime} and #{para.endTime} order by submit_time ASC
+	</select>
+	
+	<select id="CountByAge"  resultType="com.latoris.consume.beans.VOBean">
+		select age as name, sum(count) count from age_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} and age is not null group by age
+	</select>
+	
+	<select id="CountBySex"  resultType="com.latoris.consume.beans.VOBean">
+		select sex as name, sum(count) count from sex_daily_result 
+		where submit_time between #{para.startTime} and #{para.endTime} and sex is not null group by sex
+	</select>
+	<select id="CountByTypeFirst"  resultType="com.latoris.consume.beans.VOBean">
+		select name, sum(count) count from type_first_daily_result 
+		where submit_time between  #{para.startTime} and #{para.endTime} and type != '100'  and type != '200'
+		and name is not null group by type
+		order by count desc limit 15
 	</select>
 </mapper>  

@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="layui-body">
-  <div style="padding: 15px;">公司投诉总量分析</div>
+  <div style="padding: 15px;">年龄段分析</div>
 	<div class="layui-inline">
 		<label class="layui-form-label">开始日期 </label>
 		<div class="layui-input-inline">
@@ -169,7 +169,7 @@ layui.use('laydate', function(){
 						//初始化option.xAxis[0]中的data
 						option.xAxis[0].data = [];
 						for (var i = 0; i < result.length; i++) {
-							option.xAxis[0].data.push(result[i].eid);
+							option.xAxis[0].data.push(result[i].name);
 						}
 						//初始化option.series[0]中的data
 						option.series[0].data = [];

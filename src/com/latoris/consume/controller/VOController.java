@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.latoris.consume.beans.ComplaintBean;
 import com.latoris.consume.beans.VOBean;
-import com.latoris.consume.service.ComplaintServiceImpl;
 import com.latoris.consume.service.VOServiceImpl;
 
 @Controller
@@ -37,7 +36,7 @@ public class VOController {
 	private VOServiceImpl VOService;
 	
 	@RequestMapping("/enterpriseCount")
-	public String table() {
+	public String enterprise() {
 		return "enterpriseCount";
 	}
 	
@@ -48,14 +47,7 @@ public class VOController {
 		System.out.println(para.getStartTime()+" "+para.getEndTime());
 		List<VOBean> list = VOService.CountByEnterprise(para);
 		response.setContentType("text/html; charset=utf-8");
-		// 调用JSONArray.fromObject方法把array中的对象转化为JSON格式的数组
-		JSONArray json = new JSONArray();
-		for(int i = 0;i < list.size();i++) {
-			JSONObject jo =new JSONObject();
-			jo.put("eid", list.get(i).getName());
-			jo.put("count", list.get(i).getCount());
-			json.put(jo);
-		}
+		JSONArray json = convertToJson(list);
 		System.out.println(json.toString());
 		// 返回给前段页面
 		PrintWriter out;
@@ -81,14 +73,7 @@ public class VOController {
 		System.out.println(para.getStartTime()+" "+para.getEndTime());
 		List<VOBean> list = VOService.CountByAge(para);
 		response.setContentType("text/html; charset=utf-8");
-		// 调用JSONArray.fromObject方法把array中的对象转化为JSON格式的数组
-		JSONArray json = new JSONArray();
-		for(int i = 0;i < list.size();i++) {
-			JSONObject jo =new JSONObject();
-			jo.put("age", list.get(i).getName());
-			jo.put("count", list.get(i).getCount());
-			json.put(jo);
-		}
+		JSONArray json = convertToJson(list);
 		System.out.println(json.toString());
 		// 返回给前段页面
 		PrintWriter out;
@@ -100,5 +85,94 @@ public class VOController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
+	}
+	
+	@RequestMapping("/sexCount")
+	public String sex() {
+		return "sexCount";
+	}
+	
+	@RequestMapping("/count_sex")
+	@ResponseBody
+	public void countSex(HttpServletRequest request, HttpServletResponse response, @RequestBody VOBean para) {
+		System.out.println("count");
+		System.out.println(para.getStartTime()+" "+para.getEndTime());
+		List<VOBean> list = VOService.CountBySex(para);
+		response.setContentType("text/html; charset=utf-8");
+		JSONArray json = convertToJson(list);
+		System.out.println(json.toString());
+		// 返回给前段页面
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	@RequestMapping("/allCount")
+	public String all() {
+		return "submitTimeCount";
+	}
+	
+	@RequestMapping("/count_submitTime")
+	@ResponseBody
+	public void countSubmitTime(HttpServletRequest request, HttpServletResponse response, @RequestBody VOBean para) {
+		System.out.println("count");
+		System.out.println(para.getStartTime()+" "+para.getEndTime());
+		List<VOBean> list = VOService.CountBySubmitTime(para);
+		response.setContentType("text/html; charset=utf-8");
+		JSONArray json = convertToJson(list);
+		System.out.println(json.toString());
+		// 返回给前段页面
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	@RequestMapping("/typeCount")
+	public String type() {
+		return "typeFirstCount";
+	}
+	
+	@RequestMapping("/count_typeFirst")
+	@ResponseBody
+	public void countTypeFirst(HttpServletRequest request, HttpServletResponse response, @RequestBody VOBean para) {
+		System.out.println("count");
+		System.out.println(para.getStartTime()+" "+para.getEndTime());
+		List<VOBean> list = VOService.CountByTypeFirst(para);
+		response.setContentType("text/html; charset=utf-8");
+		JSONArray json = convertToJson(list);
+		System.out.println(json.toString());
+		// 返回给前段页面
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	public JSONArray convertToJson(List<VOBean> list) {
+		JSONArray json = new JSONArray();
+		for(int i = 0;i < list.size();i++) {
+			JSONObject jo =new JSONObject();
+			jo.put("name", list.get(i).getName());
+			jo.put("count", list.get(i).getCount());
+			json.put(jo);
+		}
+		return json;
 	}
 }

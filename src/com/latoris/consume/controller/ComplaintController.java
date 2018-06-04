@@ -29,7 +29,6 @@ import com.latoris.consume.beans.ComplaintBean;
 import com.latoris.consume.beans.UserBean;
 import com.latoris.consume.beans.VOBean;
 import com.latoris.consume.service.ComplaintServiceImpl;
-import com.latoris.consume.service.VOServiceImpl;
 
 @Controller
 public class ComplaintController {
@@ -77,10 +76,10 @@ public class ComplaintController {
 	}
 
 	
-	@RequestMapping(value = "/updateComplaintConfrim", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateComplaintPost", method = RequestMethod.POST)
 	public String updateConfrim(ComplaintBean complaint) {
 		// 修改提交
-		complaintService.updateComplaint(complaint, complaint.getUid());
+		complaintService.updateComplaint(complaint, complaint.getCid());
 		//logger.addInfo("更新"+complaint.getName()+"完成");
 		return "redirect:/complaint";
 	}

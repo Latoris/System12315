@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="layui-body">
-  <div style="padding: 15px;">性别分析</div>
+  <div style="padding: 15px;">大类分析</div>
 	<div class="layui-inline">
 		<label class="layui-form-label">开始日期 </label>
 		<div class="layui-input-inline">
@@ -155,7 +155,7 @@ layui.use('laydate', function(){
 			$.ajax({
 				type : "post",
 				async : false, //同步执行
-				url : "count_sex",
+				url : "count_typeFirst",
 				data : JSON.stringify({
 					name : name,
 					startTime : startTime,
