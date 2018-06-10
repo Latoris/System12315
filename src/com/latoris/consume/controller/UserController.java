@@ -35,14 +35,6 @@ public class UserController {
 		}
 		return "login";
 	}
-	
-	
-	@RequestMapping("/user")
-	public String listall(HttpServletRequest request) {
-			List<UserBean> list = userService.findUser();
-			request.setAttribute("Lists", list);
-			return "listall";
-	}
 
 	//添加新动画
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
@@ -54,21 +46,22 @@ public class UserController {
 	/*
 	 * @Param id 
 	 */
-	@RequestMapping(value = "/updateuser", method = RequestMethod.GET)
-	public String updateUser(@RequestParam("id") int id, UserBean user, HttpServletRequest request) {
-		user = userService.findUserById(id);
+	@RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+	public String updateUser(HttpServletRequest request) {
+				HttpSession session = request.getSession();
+		UserBean user = (UserBean) session.getAttribute("user");
 		request.setAttribute("user", user);
 		//logger.addInfo("更新"+user.getName());
-		return "modify";
+		return "updateUser";
 	}
 
 	
-	@RequestMapping(value = "/updateConfrim", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateUserPost", method = RequestMethod.POST)
 	public String updateConfrim(UserBean user) {
 		// 修改提交
 		userService.updateUser(user, user.getUid());
 		//logger.addInfo("更新"+user.getName()+"完成");
-		return "redirect:/user";
+		return "redirect:/showComplaint";
 	}
 
 	@RequestMapping(value = "/exit")

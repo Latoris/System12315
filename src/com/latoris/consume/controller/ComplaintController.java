@@ -72,7 +72,8 @@ public class ComplaintController {
 		complaint = complaintService.findComplaintByCid(cid);
 		request.setAttribute("complaint", complaint);
 		//logger.addInfo("更新"+complaint.getName());
-		return "modify";
+		System.out.println(complaint.toString());
+		return "updateComplaint";
 	}
 
 	
@@ -81,7 +82,7 @@ public class ComplaintController {
 		// 修改提交
 		complaintService.updateComplaint(complaint, complaint.getCid());
 		//logger.addInfo("更新"+complaint.getName()+"完成");
-		return "redirect:/complaint";
+		return "redirect:/showComplaint";
 	}
 
 	@RequestMapping(value = "/delcomplaint")

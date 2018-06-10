@@ -10,7 +10,7 @@ public interface ComplaintMapper {
 	public ComplaintBean findComplaintByCid(@Param(value="cid")long cid);
 	public void addComplaint(ComplaintBean ComplaintBean);
 	public void delComplaint(@Param(value="cid")long cid);
-	public void updateComplaintByCid(@Param(value="Complaint")ComplaintBean Complaint, @Param(value="cid")long cid);
+	public void updateComplaintByCid(@Param(value="complaint")ComplaintBean complaint, @Param(value="cid")long cid);
 	public List<ComplaintBean> findComplaint();
 	public List<ComplaintBean> findComplaintByUid(@Param(value="uid")long uid);
 	}

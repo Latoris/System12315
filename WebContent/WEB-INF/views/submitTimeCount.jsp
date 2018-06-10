@@ -134,15 +134,18 @@ layui.use('laydate', function(){
                 },
 				xAxis : [ {
 					type : 'category',
-					axisLabel:{  
-                        interval:0,//横轴信息全部显示  
+					axisLabel:{
                         rotate:-30,//-30度角倾斜显示  
                    }  
 				} ],
-				yAxis : {},
+				yAxis : [{
+					min: function(value) {
+				    	return value.min - 20;
+					}
+                }],
 				series : [ {
-					"name" : "投诉量",
-					"type" : "bar",
+					name : "投诉量",
+					type : "line",
 
 				} ]
 			};

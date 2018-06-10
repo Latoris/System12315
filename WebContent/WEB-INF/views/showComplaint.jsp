@@ -40,13 +40,13 @@
 					</dl></li>
 			</ul>
 			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="javascript:;">贤心</a>
+				<li class="layui-nav-item"><a href="updateUser">贤心</a>
 					<dl class="layui-nav-child">
 						<dd>
 							<a href="">个人资料</a>
 						</dd>
 						<dd>
-							<a href="">账户设置</a>
+							<a href="updateUser">账户设置</a>
 						</dd>
 					</dl></li>
 				<li class="layui-nav-item"><a href="exit">退出</a></li>

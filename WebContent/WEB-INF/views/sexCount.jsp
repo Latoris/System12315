@@ -114,35 +114,32 @@ layui.use('laydate', function(){
 <script type="text/javascript">
 		
 	$(function() {
+		function obj(value,name) {
+		    this.name=name;
+		    this.value=value;
+		}
 		$("#submit_btn").on('click', function(event) {
 			console.log("1");
 			// 基于准备好的dom，初始化echarts图表
 			myChart = echarts.init(document.getElementById('main'));
 			console.log("2");
 			var option = {
-				title : {
-					text : ''
-				},
-				tooltip : {
-				//show: true
-				},
-				legend : {
-					data : [ '数量' ]
-				},
-				grid: {  
-                    y2: 140  
-                },
-				xAxis : [ {
-					type : 'category',
-					axisLabel:{  
-                        interval:0,//横轴信息全部显示  
-                        rotate:-30,//-30度角倾斜显示  
-                   }  
-				} ],
-				yAxis : {},
+					tooltip : {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b} : {c} ({d}%)"
+				    },
+
+				    
 				series : [ {
-					"name" : "投诉量",
-					"type" : "bar",
+					name : "投诉量",
+					type : "pie",
+					itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
 
 				} ]
 			};
@@ -150,6 +147,7 @@ layui.use('laydate', function(){
 			var count = "0"
 			var startTime = $("#test1").val();
 			var endTime = $("#test2").val();
+		
 			;
 			//console.log(time)
 			$.ajax({
@@ -166,15 +164,14 @@ layui.use('laydate', function(){
 				dataType : "json", //返回数据形式为json
 				success : function(result) {
 					if (result) {
-						//初始化option.xAxis[0]中的data
-						option.xAxis[0].data = [];
-						for (var i = 0; i < result.length; i++) {
-							option.xAxis[0].data.push(result[i].name);
-						}
+						
+						
 						//初始化option.series[0]中的data
 						option.series[0].data = [];
 						for (var i = 0; i < result.length; i++) {
-							option.series[0].data.push(result[i].count);
+							var a = new obj(result[i].count,result[i].name);
+							console.log(a);
+							option.series[0].data.push(a);
 						}
 					}
 				}

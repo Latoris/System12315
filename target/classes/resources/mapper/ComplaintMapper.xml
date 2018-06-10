@@ -48,7 +48,8 @@
 		<select id="findComplaintByUid" parameterType="java.lang.Long" resultMap="ComplaintResultMap">
 			select * from complaint where uid = #{uid}
 		</select>
-		<select id="findComplaintByCid" parameterType="java.lang.Long">
+		<select id="findComplaintByCid" parameterType="java.lang.Long" 
+		resultType="com.latoris.consume.beans.ComplaintBean">
 			select * from complaint where cid = #{cid}
 		</select>
 </mapper>  

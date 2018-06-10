@@ -94,7 +94,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">购买方式</label>
 			<div class="layui-input-inline">
-			<select name="purchase_way" value="${complaint.purchase_type}"  lay-filter="purchaseWay">
+			<select name="purchase_way" value="${complaint.purchase_way}"  lay-filter="purchaseWay">
 				<option value=""></option>
 				<option value="1">网购</option>
 				<option value="2" selected="">线下</option>
@@ -107,7 +107,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">问题类型</label>
 			<div class="layui-input-block">
-			<select value="${complaint.problem_type}"  name="problem_type" id="problem_type" lay-filter="problemType">
+			<select value="${complaint.problem_type}"  name="problem_type" lay-filter="problemType">
 				<option value=""></option>
 				<option value="1">质量</option>
 				<option value="2" selected="">广告</option>
