@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>ECharts</title>
+<title>公司数量</title>
 <!-- JQUERY -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.0.3.min.js"></script>
@@ -25,11 +25,7 @@
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
-        <a href="javascript:;">贤心</a>
-        <dl class="layui-nav-child">
-          <dd><a href="userInfo">个人资料</a></dd>
-          <dd><a href="userUpdate">账户设置</a></dd>
-        </dl>
+        <a href="updateUser">用户</a>
       </li>
       <li class="layui-nav-item"><a href="exit">退出</a></li>
     </ul>
@@ -170,6 +166,13 @@ layui.use('laydate', function(){
 			myChart.setOption(option);
 		})
 	})
+</script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
 </script>
 </body>
 </html>

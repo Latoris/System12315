@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>所有投诉</title>
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript"
@@ -22,33 +22,9 @@
 		<div class="layui-header">
 			<div class="layui-logo">12315投诉系统</div>
 			<!-- 头部区域（可配合layui已有的水平导航） -->
-			<ul class="layui-nav layui-layout-left">
-				<li class="layui-nav-item"><a href="">控制台</a></li>
-				<li class="layui-nav-item"><a href="">商品管理</a></li>
-				<li class="layui-nav-item"><a href="">用户</a></li>
-				<li class="layui-nav-item"><a href="javascript:;">其它系统</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="">邮件管理</a>
-						</dd>
-						<dd>
-							<a href="">消息管理</a>
-						</dd>
-						<dd>
-							<a href="">授权管理</a>
-						</dd>
-					</dl></li>
-			</ul>
 			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="updateUser">贤心</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="">个人资料</a>
-						</dd>
-						<dd>
-							<a href="updateUser">账户设置</a>
-						</dd>
-					</dl></li>
+				<li class="layui-nav-item"><a href="updateUser">用户资料</a>
+					</li>
 				<li class="layui-nav-item"><a href="exit">退出</a></li>
 			</ul>
 		</div>
@@ -81,17 +57,17 @@
 			</div>
 		</div>
 		<div class="layui-body">
+		<div class="layui-form">
 		<div style="padding: 15px;">投诉列表</div>
 			<table class="layui-table" style="padding: 15px;">
 				<colgroup>
-					<col width="100">
-					<col width="100">
-					<col width="100">
-					<col width="100">
-					<col width="100">
-					<col width="100">
-					<col width="100">
-					<col width="100">
+					<col>
+					<col>
+					<col>
+					<col>
+					<col>
+					<col>
+					<col>
 					<col>
 				</colgroup>
 				<thead>
@@ -103,6 +79,7 @@
 						<td>诉求内容</td>
 						<td>问题类型</td>
 						<td>状态</td>
+						<td>操作</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -121,5 +98,13 @@
 				</tbody>
 			</table>
 		</div>
+		</div>
 </body>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+</script>
 </html>

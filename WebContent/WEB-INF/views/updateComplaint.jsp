@@ -7,7 +7,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>添加投诉</title>
+  <title>查看投诉</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
@@ -15,26 +15,9 @@
   <div class="layui-header">
     <div class="layui-logo">12315投诉系统</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
-    <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">商品管理</a></li>
-      <li class="layui-nav-item"><a href="">用户</a></li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">其它系统</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">邮件管理</a></dd>
-          <dd><a href="">消息管理</a></dd>
-          <dd><a href="">授权管理</a></dd>
-        </dl>
-      </li>
-    </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
-        <a href="javascript:;">贤心</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">个人资料</a></dd>
-          <dd><a href="">账户设置</a></dd>
-        </dl>
+        <a href="updateUser">用户</a>
       </li>
       <li class="layui-nav-item"><a href="exit">退出</a></li>
     </ul>
@@ -69,32 +52,32 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">公司统一社会信用代码 </label>
 			<div class="layui-input-inline">
-				<input type="text" name="eid" class="layui-input" value="${complaint.eid}" readonly"/>
+				<input type="text" name="eid" class="layui-input" value="${complaint.eid}" readonly="readonly"/>
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">产品名称 </label>
 			<div class="layui-input-inline">
-				<input type="text" name="merchandise_name" class="layui-input value="${complaint.merchandise_name}" readonly"/>
+				<input type="text" name="merchandise_name" class="layui-input" value="${complaint.merchandise_name}" readonly="readonly" />
 			</div>
 			<label class="layui-form-label">产品类型 </label>
 			<div class="layui-input-inline">
-				<input type="text" name="merchandise_type" class="layui-input" value="${complaint.merchandise_type}" readonly/>
+				<input type="text" name="merchandise_type" class="layui-input" value="${complaint.merchandise_type}" readonly="readonly"/>
 			</div>
 		</div>
-		<input name="submit_time" value=value="${complaint.submit_time}"  hidden/>
+		<input name="submit_time" value="${complaint.submit_time}"  hidden/>
 		<div class="layui-form-item">
 		<div class="layui-inline">
 			<label class="layui-form-label">发生日期 </label>
 			<div class="layui-input-inline">
-				<input value="${complaint.happen_time}" readonly type="text" class="layui-input" id="happen_time" name="happen_time"/>
+				<input value="${complaint.happen_time}" readonly="readonly" type="text" class="layui-input" id="happen_time" name="happen_time"/>
 			</div>
 		</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">购买方式</label>
 			<div class="layui-input-inline">
-			<select name="purchase_way" value="${complaint.purchase_way}"  lay-filter="purchaseWay">
+			<select name="purchase_way" lay-filter="purchaseWay">
 				<option value=""></option>
 				<option value="1">网购</option>
 				<option value="2" selected="">线下</option>
@@ -107,7 +90,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">问题类型</label>
 			<div class="layui-input-block">
-			<select value="${complaint.problem_type}"  name="problem_type" lay-filter="problemType">
+			<select name="problem_type" lay-filter="problemType">
 				<option value=""></option>
 				<option value="1">质量</option>
 				<option value="2" selected="">广告</option>
